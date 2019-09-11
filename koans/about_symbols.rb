@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 class AboutSymbols < Neo::Koan
   def test_symbols_are_symbols
-    symbol = :r
+    symbol = :ruby
     assert_equal true, symbol.is_a?(Symbol)
   end
 
