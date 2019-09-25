@@ -13,9 +13,26 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 # of the Proxy class is given in the AboutProxyObjectProject koan.
 
 class Proxy
+  
   def initialize(target_object)
     @object = target_object
     # ADD MORE CODE HERE
+	@database = []
+  end
+  def method_missing(method_name,*args,&block)
+    @database << method_name 
+	@object.send(method_name,*args,&block)
+	
+  end
+  def called?(method_name)
+    return @database.find { |item| item == method_name }
+  end
+  def number_of_times_called(method_name)
+    catched_msg =  @database.select { |item| item == method_name }
+	return catched_msg.size
+  end
+  def messages
+	return @database
   end
 
   # WRITE CODE HERE
